@@ -22,34 +22,7 @@ Reporting: TestNG / Extent Reports
 
 Design Pattern: Page Object Model (POM)
 
-📂 Project Structure
-SeleniumAutomationWithJava
-│
-├── .idea/                 # IntelliJ IDEA project files
-├── .mvn/                  # Maven wrapper files
-│
-├── logs/                  # Log files (Log4j2)
-├── reports/               # Test execution reports
-├── screenshots/           # Screenshots for failed tests
-│
-├── src/
-│   ├── main/java/
-│   │   ├── base/           #  BasePage
-│   │   ├── config/         # Configuration classes
-│   │   ├── pages/          # Page Object classes
-│   │   └── utils/          # Utility/helper classes
-│   │
-│   └── test/java/
-│       └── tests/          # TestNG test classes including BaseTest
-│
-├── target/                # Maven build output
-│
-├── testdata/
-│   └── TestData.xlsx      # External test data (Data-Driven Testing)
-│
-├── .gitignore
-├── pom.xml                # Maven dependencies & build config
-└── testng.xml             # TestNG suite configuration
+
 
 ⚙️ Prerequisites
 
