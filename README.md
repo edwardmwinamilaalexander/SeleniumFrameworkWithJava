@@ -1,5 +1,5 @@
 # SeleniumFrameworkWithJava
-Test automation framework using Selenium WebDriver and Java
+
 Selenium Automation with Java
 📌 Project Description
 
