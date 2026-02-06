@@ -74,6 +74,4 @@ Reports are generated automatically after test execution.
 
 🔮 Future Enhancements
 
-Parallel test execution
-
 Docker support
