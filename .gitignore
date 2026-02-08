@@ -47,6 +47,6 @@ reports/
 screenshots/
 test-output/
 
-src/main/resources/config/config.properties
+src/test/resources/config/config.properties
 
 

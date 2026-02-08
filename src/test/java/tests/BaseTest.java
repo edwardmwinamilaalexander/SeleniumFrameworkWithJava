@@ -110,9 +110,10 @@ public class BaseTest {
 
         prop = new Properties();
 
-        try (InputStream inputStream = Thread.currentThread()
-                .getContextClassLoader()
-                .getResourceAsStream("config/config.properties")) {
+        try (InputStream inputStream =
+                     BaseTest.class
+                             .getClassLoader()
+                             .getResourceAsStream("config/config.properties")) {
 
             if (inputStream == null) {
                 Log.error("config/config.properties not found in classpath");
@@ -129,4 +130,6 @@ public class BaseTest {
             throw new RuntimeException("Configuration loading failed", e);
         }
     }
+
 }
+
