@@ -9,7 +9,15 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
+
     // Header links
+    @FindBy(css = "#small-searchterms")
+    private WebElement searchItemField;
+
+    @FindBy(css = "input[value='Search']")
+    private WebElement searchButton;
+
+
     @FindBy(linkText = "Register")
     private WebElement registerLink;
 
@@ -53,7 +61,7 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    // Navigation Actions
+    // Actions
     public RegisterPage navigateToRegisterPage() {
         click(registerLink);
         return new RegisterPage(driver);
@@ -75,6 +83,14 @@ public class HomePage extends BasePage {
     }
 
     // Verification Actions
+    public String searchProduct(String product) {
+        type(searchItemField, product);
+        click(searchButton);
+
+        return product;
+    }
+
+
     public boolean isHomePageLoaded() {
         return isElementDisplayed(shopLogo);
     }

@@ -27,6 +27,16 @@ public class HomeTest extends BaseTest {
         );
     }
 
+
+    @Test(description = "Verify that a user can search for a product successfully")
+    public void shouldSearchForProduct() {
+
+        String productName = "Computing and Internet";
+        String actualHeader = homePage.searchProduct(productName);
+
+        Assert.assertTrue(actualHeader.contains(productName),
+                "Search result  did not contain the expected product name!");
+    }
     @Test(description = "Should navigate to Login page from home page")
     public void shouldNavigateToLoginPage() {
         LoginPage loginPage = homePage.navigateToLoginPage();
