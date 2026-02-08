@@ -32,9 +32,9 @@ public class LoginPage extends BasePage {
     }
 
     // Actions
-    public void login(String username, String password) {
+    public void login(String email, String password) {
         // Use BasePage's reusable type method
-        type(emailField, username);
+        type(emailField, email);
         type(passwordField, password);
 
         // Click login button
