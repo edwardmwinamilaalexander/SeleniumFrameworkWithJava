@@ -1,4 +1,3 @@
-
 package tests;
 
 import org.testng.Assert;
@@ -13,8 +12,8 @@ import java.io.IOException;
 
 public class LoginTest extends BaseTest {
 
-    private HomePage homePage;
-    private LoginPage loginPage;
+     HomePage homePage;
+     LoginPage loginPage;
 
     public LoginTest() {
         super();
@@ -28,7 +27,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginData", description = "Verify login using Excel data")
-    public void testLoginExcel(String email, String password) {
+    public void shouldLoginWithValidCredentialsWithExcelData(String email, String password) {
         homePage.navigateToLoginPage();
         loginPage.login(email, password);
 

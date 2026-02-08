@@ -7,6 +7,7 @@
             <class name="tests.HomeTest"/>
             <class name="tests.RegisterTest"/>
             <class name="tests.CartTest"/>
+            <class name="tests.BookTest"/>
         </classes>
     </test>
 </suite>

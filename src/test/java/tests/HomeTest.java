@@ -17,96 +17,80 @@ public class HomeTest extends BaseTest {
     public void setUp() {
         initialization();
         homePage = new HomePage(driver);
-
     }
 
-
-    @Test(description = "Verify home page loads successfully")
-    public void testHomePageLoadsSuccessfully() {
-
+    @Test(description = "Should load home page successfully")
+    public void shouldLoadHomePageSuccessfully() {
         Assert.assertTrue(
-                homePage.isLogoDisplayed(),
+                homePage.isHomePageLoaded(),
                 "Home page did not load correctly - logo not visible"
         );
     }
 
-    @Test(description = "Verify user can navigate to Login page from home page")
-    public void testNavigateToLoginPage() {
-
+    @Test(description = "Should navigate to Login page from home page")
+    public void shouldNavigateToLoginPage() {
         LoginPage loginPage = homePage.navigateToLoginPage();
-
         Assert.assertTrue(
                 loginPage.isLoginPageLoaded(),
                 "Login page did not load after clicking Login link"
         );
     }
 
-    @Test(description = "Verify user can navigate to Register page from home page")
-    public void testNavigateToRegisterPage() {
-
+    @Test(description = "Should navigate to Register page from home page")
+    public void shouldNavigateToRegisterPage() {
         RegisterPage registerPage = homePage.navigateToRegisterPage();
-
         Assert.assertTrue(
                 registerPage.isRegisterPageLoaded(),
                 "Register page did not load after clicking Register link"
         );
     }
 
-    @Test(description = "Verify user can navigate to Book page from home page")
-    public void testNavigateToBookPage() {
-
+    @Test(description = "Should navigate to Book page from home page")
+    public void shouldNavigateToBookPage() {
         BookPage bookPage = homePage.navigateToBookPage();
-
         Assert.assertTrue(
                 bookPage.isBookPageLoaded(),
-                "Book page did not load after clicking Register link"
+                "Book page did not load after clicking Book link"
         );
     }
 
-    @Test(description = "Verify user can navigate to Cart page from home page")
-    public void testNavigateToCartPage() {
-
+    @Test(description = "Should navigate to Cart page from home page")
+    public void shouldNavigateToCartPage() {
         CartPage cartPage = homePage.navigateToCartPage();
-
         Assert.assertTrue(
                 cartPage.isCartPageLoaded(),
-                "Book page did not load after clicking Register link"
+                "Cart page did not load after clicking Cart link"
         );
     }
 
-    @Test
-    public void testCategoryHasEightSubCategories() {
-
-
-        // Assert the category has exactly 8 inactive items
+    @Test(description = "Should have exactly eight subcategories in category")
+    public void shouldHaveEightSubCategories() {
         Assert.assertTrue(
                 homePage.hasEightCategories(),
                 "Category should contain exactly 8 inactive subcategories"
         );
     }
 
-    @Test
-    public void testHomePageHasSixFeaturedProducts() {
-
-
-        // Assert the category has exactly 8 inactive items
+    @Test(description = "Should display exactly six featured products on home page")
+    public void shouldHaveSixFeaturedProducts() {
         Assert.assertTrue(
                 homePage.hasSixFeaturedProducts(),
                 "HomePage should contain exactly 6 products"
         );
     }
 
-    @Test
-    public void testAddProductToCart() {
+    @Test(description = "Should add a product to cart successfully")
+    public void shouldAddProductToCartSuccessfully() {
         // Arrange
         String targetProduct = "14.1-inch Laptop";
 
         // Act
         homePage.addToCartByProductName(targetProduct);
 
-        // Assert: Verify the success bar is visible
-        Assert.assertTrue(homePage.isSuccessNotificationDisplayed(),
-                "Success notification bar was not displayed after adding product!");
+        // Assert
+        Assert.assertTrue(
+                homePage.isSuccessNotificationDisplayed(),
+                "Success notification bar was not displayed after adding product!"
+        );
     }
 }
-

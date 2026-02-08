@@ -1,16 +1,18 @@
 package tests;
 
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.HomePage;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 public class CartTest extends BaseTest {
 
-    CartPage cartPage;
-    HomePage homePage;
+    private CartPage cartPage;
+    private HomePage homePage;
 
     public CartTest() {
         super();
@@ -23,44 +25,67 @@ public class CartTest extends BaseTest {
         cartPage = new CartPage(driver);
     }
 
-    @Test
-    public void testIsProductInCart() {
+    @Test(description = "Should add a product to the cart successfully")
+    public void shouldAddProductToCartSuccessfully() {
 
-        // 1. Arrange:
+        // Arrange
         String productName = "14.1-inch Laptop";
 
-        // Stay on Home Page to add the item
-        homePage.addToCartByProductName(productName);
-
-        // Now move to the Cart Page t
-        homePage.navigateToCartPage();
-
         // Act
+        homePage.addToCartByProductName(productName);
+        homePage.navigateToCartPage();
         boolean isProductInCart = cartPage.isProductInCart(productName);
 
         // Assert
         assertTrue(isProductInCart, "Product should be in the cart.");
     }
 
-    @Test
-    public void testIsProductDetailsCorrect() {
-        // 1. Arrange:
+    @Test(description = "Should display correct product details in the cart")
+    public void shouldDisplayCorrectProductDetailsInCart() {
+
+        // Arrange
         String productName = "14.1-inch Laptop";
         String expectedPrice = "1590";
         String expectedQty = "1";
 
-        // Act:
-        // Stay on Home Page to add the item
+        // Act
         homePage.addToCartByProductName(productName);
-
-        // Now move to the Cart Page t
         homePage.navigateToCartPage();
-
-        // 3. Verify
         boolean areDetailsCorrect = cartPage.isProductDetailsCorrect(productName, expectedPrice, expectedQty);
 
-        // 4. Assert
+        // Assert
         assertTrue(areDetailsCorrect, "Product details should be correct (price and quantity).");
     }
 
+    @Test(description = "Should allow selecting a country in the cart")
+    public void shouldSelectCountryInCart() {
+
+        // Arrange
+        String productName = "14.1-inch Laptop";
+        String country = "Congo";
+
+        // Act
+        homePage.addToCartByProductName(productName);
+        homePage.navigateToCartPage();
+        cartPage.selectCountry(country);
+
+        // Assert
+        Assert.assertEquals(cartPage.getSelectedCountry(), country, "Country selection failed!");
+    }
+
+    @Test(description = "Should have Terms of Service checkbox unchecked by default")
+    public void shouldHaveTermsOfServiceUncheckedByDefault() {
+
+        // Arrange
+        String productName = "14.1-inch Laptop";
+
+        // Act
+        homePage.addToCartByProductName(productName);
+        homePage.navigateToCartPage();
+        boolean isChecked = cartPage.isTermsOfServiceChecked();
+
+        // Assert
+        assertFalse(isChecked, "Terms of Service checkbox should be unchecked initially");
+    }
 }
+

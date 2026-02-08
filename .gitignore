@@ -47,6 +47,6 @@ reports/
 screenshots/
 test-output/
 
-src/main/java/config/config.properties
+src/main/resources/config/config.properties
 
 

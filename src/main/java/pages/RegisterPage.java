@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegisterPage extends BasePage {
+    public RegisterPage(WebDriver driver) {
+        super(driver);
+    }
 
     // Page Elements
     @FindBy(css = "#FirstName")
@@ -33,9 +36,7 @@ public class RegisterPage extends BasePage {
     private WebElement registrationSuccessMessage;
 
     // Actions
-    public RegisterPage(WebDriver driver) {
-        super(driver);
-    }
+
 
     public void fillRegisterForm(
             String firstname,

@@ -23,7 +23,7 @@ public class RegisterTest extends BaseTest {
     }
 
     @Test
-    public void testUserCanRegisterSuccessfully() {
+    public void shouldRegisterUserSuccessfully() {
 
         // Navigate to Register Page
         homePage.navigateToRegisterPage();

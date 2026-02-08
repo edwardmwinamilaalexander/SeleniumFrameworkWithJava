@@ -4,7 +4,6 @@ import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
@@ -49,9 +48,6 @@ public class HomePage extends BasePage {
     private WebElement cartShoppingLabel;
 
 
-
-
-
     // Constructor
     public HomePage(WebDriver driver) {
         super(driver);
@@ -79,7 +75,7 @@ public class HomePage extends BasePage {
     }
 
     // Verification Actions
-    public boolean isLogoDisplayed() {
+    public boolean isHomePageLoaded() {
         return isElementDisplayed(shopLogo);
     }
 
@@ -108,16 +104,19 @@ public class HomePage extends BasePage {
             }
         }
     }
-        public boolean isSuccessNotificationDisplayed(){
-            try {
-                // We use our existing waitForVisibility to ensure the bar has
-                // had time to appear before we check it
-                waitForVisibility(successNotificationBar);
-                return successNotificationBar.isDisplayed();
-            } catch (Exception e) {
-                // If the element isn't found or times out, it's not displayed
-                return false;
-            }
+
+    public boolean isSuccessNotificationDisplayed() {
+        try {
+            // We use our existing waitForVisibility to ensure the bar has
+            // had time to appear before we check it
+            waitForVisibility(successNotificationBar);
+            return successNotificationBar.isDisplayed();
+        } catch (Exception e) {
+            // If the element isn't found or times out, it's not displayed
+            return false;
         }
     }
+
+
+}
 

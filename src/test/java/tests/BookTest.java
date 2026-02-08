@@ -8,9 +8,10 @@ import pages.HomePage;
 import pages.LoginPage;
 
 public class BookTest extends BaseTest {
-    HomePage homePage;
-    BookPage bookPage;
-    LoginPage loginPage;
+
+    private HomePage homePage;
+    private BookPage bookPage;
+    private LoginPage loginPage;
 
     public BookTest() {
         super();
@@ -24,22 +25,21 @@ public class BookTest extends BaseTest {
         bookPage = new BookPage(driver);
     }
 
-    @Test
-    public void testIsBookUrlDisplayed() {
+    @Test(description = "Should display the correct URL when navigating to the Book page")
+    public void shouldDisplayBookPageUrl() {
         homePage.navigateToBookPage();
-        Assert.assertTrue(bookPage.isBookPageLoaded(), "Book page is not loaded.");
+        Assert.assertTrue(
+                bookPage.isBookPageLoaded(),
+                "Book page is not loaded."
+        );
     }
 
-    @Test
-    public void testProductListVisibility() {
+    @Test(description = "Should display the book list on the Book page")
+    public void shouldDisplayBookListOnBookPage() {
         homePage.navigateToBookPage();
-        Assert.assertTrue(bookPage.isBookListVisible(), "Book list is not visible on the books page.");
+        Assert.assertTrue(
+                bookPage.isBookListVisible(),
+                "Book list is not visible on the books page."
+        );
     }
-
-
-
-
-
 }
-
-

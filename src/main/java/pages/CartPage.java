@@ -4,23 +4,26 @@ import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
 public class CartPage extends BasePage {
+
+    // Constructor
     public CartPage(WebDriver driver) {
         super(driver);
     }
 
-    // locators
-
-    @FindBy(css = "div[class='page-title'] h1")
+    // Page Title
+    @FindBy(css = "div.page-title h1")
     private WebElement cartPageTitle;
 
+    // Product details locators
     @FindBy(css = ".cart-item-row .product-name")
     private List<WebElement> productNamesInCart;
 
-    // Locators at the top of the class
     @FindBy(css = ".cart-item-row")
     private List<WebElement> productRowInCart;
 
@@ -33,16 +36,25 @@ public class CartPage extends BasePage {
     @FindBy(className = "qty-input")
     private List<WebElement> allQtyInputs;
 
+    // Checkout and terms locators
+    @FindBy(css = "#checkout")
+    private WebElement checkOutBtn;
+
+    @FindBy(css = "#termsofservice")
+    private WebElement termsOfServiceCheckBox;
+
+    // Country selector
+    @FindBy(css = "#CountryId")
+    private WebElement countryDropDown;
 
 
-
-    // actions
+    // Verify if cart page is loaded
     public boolean isCartPageLoaded() {
         return isElementDisplayed(cartPageTitle);
     }
 
+    // Check if product is in cart by name
     public boolean isProductInCart(String productName) {
-        // Loop through
         for (WebElement element : productNamesInCart) {
             if (element.getText().equalsIgnoreCase(productName)) {
                 return true;
@@ -50,11 +62,10 @@ public class CartPage extends BasePage {
         }
         return false;
     }
-    public boolean isProductDetailsCorrect(String productName, String expectedPrice, String expectedQty) {
-        // loop through the list
-        for (int i = 0; i < allProductNamesInCart.size(); i++) {
 
-            // 1. Get the name at the current index
+    // Validate product details: price and quantity
+    public boolean isProductDetailsCorrect(String productName, String expectedPrice, String expectedQty) {
+        for (int i = 0; i < allProductNamesInCart.size(); i++) {
             String actualName = allProductNamesInCart.get(i).getText();
 
             if (actualName.equalsIgnoreCase(productName)) {
@@ -68,4 +79,37 @@ public class CartPage extends BasePage {
         }
         return false;
     }
+
+    // Click the Terms of Service checkbox
+    public void clickTermsOfServiceCheckBox() {
+        wait.until(ExpectedConditions.elementToBeClickable(termsOfServiceCheckBox));
+        click(termsOfServiceCheckBox);
+    }
+
+    public boolean isTermsOfServiceChecked() {
+        wait.until(ExpectedConditions.visibilityOf(termsOfServiceCheckBox));
+        return termsOfServiceCheckBox.isSelected();
+    }
+
+    // Click the Checkout button with wait
+    public void clickCheckOutButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(checkOutBtn));
+        click(checkOutBtn);
+    }
+
+
+
+    // Select a country from dropdown
+    public void selectCountry(String countryName) {
+        wait.until(ExpectedConditions.visibilityOf(countryDropDown));
+        new Select(countryDropDown).selectByVisibleText(countryName);
+    }
+
+    // Get the currently selected country
+    public String getSelectedCountry() {
+        Select select = new Select(countryDropDown);
+        return select.getFirstSelectedOption().getText();
+    }
 }
+
+
